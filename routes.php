@@ -40,6 +40,7 @@ return [
     "get_crontab_list"=> "CrontabManagerController@getList",
     "add_crontab" => "CrontabManagerController@addCrontab",
     "remove_crontab" => "CrontabManagerController@removeCrontab",
-    "delete_crontab" => "CrontabManagerController@deleteCrontab"
+    "delete_crontab" => "CrontabManagerController@deleteCrontab",
+    "update_crontab" => "CrontabManagerController@updateCrontab"
 
 ];

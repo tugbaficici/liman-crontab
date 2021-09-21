@@ -63,7 +63,9 @@
     "Saat giriniz.":"Enter hour.",
     "Dakika giriniz.":"Enter minute.",
     "Crontab Ekle":" Add Crontab",
-    "Ekle":"Add"
+    "Ekle":"Add",
+    "Güncelle":"Update",
+    "Crontab Güncelle":"Update Crontab"
 
 
     

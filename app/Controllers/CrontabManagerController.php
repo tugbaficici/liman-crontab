@@ -49,6 +49,9 @@ class CrontabManagerController
                 "Sil" => [
                     "target" => "jsDeleteCrontab",
                     "icon" => "fas fa-trash-alt"
+                ],"Güncelle" => [
+                    "target" => "jsUpdateCrontab",
+                    "icon" => "far fa-edit"
                 ]
             ]
         ]);
@@ -102,6 +105,43 @@ class CrontabManagerController
             "command" => request("command")
         ]);
         return respond($commandCron,200);
+    }
+
+    function updateCrontab(){
+        validate([
+            "minute" => "required|string",
+            "hour" => "required|string",
+            "day" => "required|string",
+            "month" => "required|string",
+            "weekday" => "required|string",
+            "command" => "required|string",
+            "oldminute" => "required|string",
+            "oldhour" => "required|string",
+            "oldday" => "required|string",
+            "oldmonth" => "required|string",
+            "oldweekday" => "required|string",
+            "oldcommand" => "required|string"
+        ]);
+
+        $commandCron = Command::run("crontab -l | grep -v '@{:minute} @{:hour} @{:day} @{:month} @{:weekday} @{:command}' | crontab -", [
+            "minute" => request("oldminute"),
+            "hour" => request("oldhour"),
+            "day" => request("oldday"),
+            "month" => request("oldmonth"),
+            "weekday" => request("oldweekday"),
+            "command" => request("oldcommand")
+        ]);
+
+        $commandCronUpdate = Command::run("(crontab -l ; echo '@{:minute} @{:hour} @{:day} @{:month} @{:weekday} @{:command}') | crontab -", [
+            "minute" => request("minute"),
+            "hour" => request("hour"),
+            "day" => request("day"),
+            "month" => request("month"),
+            "weekday" => request("weekday"),
+            "command" => request("command")
+        ]);
+
+        return respond(__("Crontab başarıyla güncellendi"),200);
     }
        
 }
