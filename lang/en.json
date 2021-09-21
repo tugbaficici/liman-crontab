@@ -49,7 +49,23 @@
     "Oluştur":"Create",
     "Dosya İsmi":"File Name",
     "Klasör İsmi": "Folder Name",
-    "Başarıyla sonlandırıldı...":"Finished successfully..."
+    "Başarıyla sonlandırıldı...":"Finished successfully...",
+    "Dakika":"Minute",
+    "Saat":"Hour",
+    "Haftanın Günü":"day of the week",
+    "Komut":"Command",
+    "Yeni Crontab Ekle":"Add New Crontab",
+    "Crontab Temizle":"Remove Crontab",
+    "Komutu giriniz.":"Enter command.",
+    "Haftanın gününü giriniz.":"Enter day of the week.",
+    "Ay giriniz.":"Enter month of year.",
+    "Gün giriniz.":"Enter day of month.",
+    "Saat giriniz.":"Enter hour.",
+    "Dakika giriniz.":"Enter minute.",
+    "Crontab Ekle":" Add Crontab",
+    "Ekle":"Add"
+
+
     
 
     

@@ -7,7 +7,7 @@ class CrontabManagerController
 {
 	function getList()
     {
-        // Komut çalıştırdık
+     
         $cmd = Command::run("crontab -l");
         $cmd = explode("\n", $cmd);
         $crons= array();
@@ -19,12 +19,12 @@ class CrontabManagerController
 
         foreach ($crons as $key => &$process)
         {
-            // fazlalık boşluklarımı sildim
+         
             $process = preg_replace('/\s+/', ' ', $process);
 
-            // boşluklara göre parçalayalım
+            
             $process = explode(" ", $process);
-            // veriyi formatlayalim
+          
             if(count($process)>6){
                 for($i=6;$i<count($process);$i++){
                     $process[5]=$process[5]." ".$process[$i];
@@ -74,7 +74,7 @@ class CrontabManagerController
             "weekday" => request("weekday"),
             "command" => request("command")
         ]);
-        return respond($commandCron,200);
+        return respond(__("Crontab başarıyla eklendi"),200);
     }
 
     function removeCrontab(){

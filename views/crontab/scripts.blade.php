@@ -4,12 +4,12 @@
         showSwal("Yükleniyor...", "info");
         let data = new FormData();
         request("{{ API('get_crontab_list') }}", data, function (response) {
-            // Başarılıysa
+           
             console.log(response);
             $("#cron_list").html(response).find(".table").dataTable(dataTablePresets("normal"));
             Swal.close();
         }, function (error) {
-            // Başarısızsa
+            
             console.log(error);
         });
     }
@@ -26,15 +26,16 @@
         data.append("command", $("#crontabAddModal").find("#command_field").val());
 
         request("{{API('add_crontab')}}", data, function(response){
-            // işlem yapıldıktan sonra modal penceresini gizle.
+           
             $("#crontabAddModal").modal("hide");
-            // Yükleniyor mesajını işlem bittiği için kapatıyoruz.
+            
             Swal.close();
-            // modal içerisindeki input değerlerini eski haline getiriyoruz.
+            
             $("#crontabAddModal").find("input").val("");
             response = JSON.parse(response);
-            // Başarılı olduğuna dair 2.5 saniyelik bir mesaj gösteriyoruz.
+            
             showSwal(response.message, 'success', 2500);
+            crontabManager();
         }, function(error){
             error = JSON.parse(error);
             showSwal(error.message, 'error');
@@ -44,13 +45,13 @@
         showSwal("Yükleniyor...", "info");
         let data = new FormData();
         request("{{ API('remove_crontab') }}", data, function (response) {
-            // Başarılıysa
+           
             console.log(response);
             Swal.close();
             showSwal("Başarıyla sonlandırıldı...", 'success', 2500);
-            
+            crontabManager();
         }, function (error) {
-            // Başarısızsa
+           
             console.log(error);
         });
     }
@@ -65,12 +66,13 @@
         data.append("month", $(node).find("#month").html());
         data.append("weekday", $(node).find("#weekdays").html());
         data.append("command", $(node).find("#command").html());
+
         request("{{ API('delete_crontab') }}", data, function (response) {
-            
-            showSwal("Başarıyla sonlandırıldı...", "success",2000);
             Swal.close();
+            showSwal("Başarıyla sonlandırıldı...", "success",2000);
+            crontabManager();
         }, function (error) {
-            // Başarısızsa
+            
             console.log(error);
         });
 
